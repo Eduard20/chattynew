@@ -91,9 +91,9 @@ app.controller("chatCtrl", ['$scope', '$rootScope', '$http', '$timeout',
         socket.on('new message', function(data){
             console.log(data);
             if (data.nick !== $rootScope.userInfo.username) {
-                $chat.append(`<li style="width:100%"><div class="pull-left" style="width: 10%"><div><p style="margin:0">${$rootScope.userInfo.username}</p></div><p><small>${data.date}</small></p></div><div class="msj macro pull-left"><p>${data.msg}</p></div></li>`);
+                $chat.append(`<li style="width:100%"><div class="pull-left" style="width: 10%"><div><p style="margin:0">${data.nick}</p></div><p><small>${data.date}</small></p></div><div class="msj macro pull-left"><p>${data.msg}</p></div></li>`);
             } else {
-                $chat.append(`<li style="width:100%"><div class="pull-right" style="width: 10%"><div><p style="margin:0">${$rootScope.userInfo.username}</p></div><p><small>${data.date}</small></p></div><div class="msj macro pull-right"><p>${data.msg}</p></div></li>`);
+                $chat.append(`<li style="width:100%"><div class="pull-right" style="width: 10%"><div><p style="margin:0">${data.nick}</p></div><p><small>${data.date}</small></p></div><div class="msj macro pull-right"><p>${data.msg}</p></div></li>`);
             }
         });
         var me = {};
