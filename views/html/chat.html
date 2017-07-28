@@ -15,10 +15,10 @@
                         <ul>
                             <li style="width:100%" ng-repeat="chat in chatHistory | orderBy:'date' ">
                             <div class="pull-left" style="width: 10%">
-                                <div><img class="img-circle" style="width:18px;height:18px" src="/files/img/man.png" /></div>
+                                <p style="margin:0">{{chat.username}}</p>
+                                <!--<div><img class="img-circle" style="width:18px;height:18px" src="/files/img/man.png" /></div>-->
                                 <p><small>{{chat.date | date:"h:mm a"}}</small></p>
                             </div>
-
                             <div class="msj macro pull-left">
                                 <p>{{chat.message}}</p>
                             </div>

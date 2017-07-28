@@ -42,6 +42,7 @@ app.controller("chatCtrl", ['$scope', '$rootScope', '$http', '$timeout',
             if (obj) socket.emit("joinChat", obj);
             $http({url : "/api/getHistory", method : "POST", data : obj}).success((data) => {
                 if (!data.error) {
+                    console.log($scope.chatHistory);
                     $scope.chatHistory = data;
                 } else {
                     // $scope.errorMsg = data;
@@ -58,7 +59,6 @@ app.controller("chatCtrl", ['$scope', '$rootScope', '$http', '$timeout',
         var $users = $("#users");
         var $nickError = $("#nickError");
         socket.emit('new user', $rootScope.userInfo.username, function(data){
-            console.log(data);
             if(data) {
                 $('#nickWrap').hide();
                 $('#contentWrap').show();
@@ -91,9 +91,9 @@ app.controller("chatCtrl", ['$scope', '$rootScope', '$http', '$timeout',
         socket.on('new message', function(data){
             console.log(data);
             if (data.nick !== $rootScope.userInfo.username) {
-                $chat.append(`<li style="width:100%"><div class="pull-left" style="width: 10%"><div><img class="img-circle" style="width:18px;height:18px" src="/files/img/man.png" /></div><p><small>${data.date}</small></p></div><div class="msj macro pull-left"><p>${data.msg}</p></div></li>`);
+                $chat.append(`<li style="width:100%"><div class="pull-left" style="width: 10%"><div><p style="margin:0">${$rootScope.userInfo.username}</p></div><p><small>${data.date}</small></p></div><div class="msj macro pull-left"><p>${data.msg}</p></div></li>`);
             } else {
-                $chat.append(`<li style="width:100%"><div class="pull-right" style="width: 10%"><div><img class="img-circle" style="width:18px;height:18px" src="/files/img/man.png" /></div><p><small>${data.date}</small></p></div><div class="msj macro pull-right"><p>${data.msg}</p></div></li>`);
+                $chat.append(`<li style="width:100%"><div class="pull-right" style="width: 10%"><div><p style="margin:0">${$rootScope.userInfo.username}</p></div><p><small>${data.date}</small></p></div><div class="msj macro pull-right"><p>${data.msg}</p></div></li>`);
             }
         });
         var me = {};
@@ -136,9 +136,9 @@ app.controller("chatCtrl", ['$scope', '$rootScope', '$http', '$timeout',
 //
 //         }
 
-        // function resetChat(){
-        //     $(".view ul").empty();
-        // }
+        function resetChat(){
+            $(".view ul").empty();
+        }
         //
         // $(".mytext").on("keyup", function(e){
         //     if (e.which == 13){
