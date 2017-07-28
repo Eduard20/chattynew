@@ -1,0 +1,158 @@
+#words table td i:hover {
+    color: #ccc;
+    cursor: pointer;
+}
+#words .collapsible-header, #words .collapsible-body {
+    border: none;
+}
+#words .collapsible {
+    border-radius: 0 0 2px 2px;
+}
+#searchWords p {
+    padding-bottom: 0;
+}
+.collection .collection-item.avatar {
+    min-height: 0;
+}
+#login {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: url("../img/login_back.jpg") top center no-repeat;
+    padding-bottom: 300px;
+}
+#logo {
+    width: 143px;
+    height: 136px;
+    margin: 75px 0 48px;
+}
+#loginPart {
+    border-radius: 3px;
+    overflow: hidden;
+}
+#loginPart .header {
+    overflow: hidden;
+    padding: 20px 30px;
+    background: #8bc53f;
+}
+#loginPart .header p {
+    padding: 0;
+    margin: 0;
+    float: left;
+    font: 22px/22px "Roboto";
+    color: #ffffff;
+}
+#loginPart .main {
+    background-color: #ebebeb;
+    padding: 40px 30px;
+}
+#loginPart .main form input {
+    width: 100%;
+    outline: none;
+    border: 1px solid #dfdfdf;
+    border-radius: 4px;
+    margin: 10px 0;
+    padding: 10px 20px;
+}
+#loginPart .main form input[type="password"] {
+    background: url("../img/locked.png") 254px center no-repeat #fff;
+}
+#loginPart .main form input[type="submit"] {
+    background-color: #f35a60;
+    font: 18px/18px "Roboto";
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+}
+#loginPart .main form input[type="submit"]:hover {
+    opacity: 0.5;
+}
+#loginPart .footer {
+    padding: 20px 0 10px;
+    background-color: #f3f3f3;
+}
+#loginPart .footer p {
+    color: #929292;
+}
+#loginPart .footer a {
+    color: #f35b61;
+    cursor: pointer;
+}
+#index {
+    width: 100%;
+}
+#mainView {
+    width: 100%;
+    min-height: 100%;
+    background: url("../img/index.jpg") top center no-repeat;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+#index header {
+    background-color: #5d6e7a;
+    padding: 30px 190px;
+    overflow: hidden;
+}
+#index header ul {
+    margin: 0;
+}
+#index header ul li {
+    display: inline-block;
+    padding: 0 20px;
+
+}
+#index header ul li a {
+    color: #ffffff;
+}
+#index header ul li a:hover {
+    color: #8bc53f;
+}
+#index header a {
+    color: #a6b0b7;
+    cursor: pointer;
+}
+#registerModal form input {
+    width: 100%;
+    outline: none;
+    border: 1px solid #dfdfdf;
+    border-radius: 4px;
+    margin: 10px 0;
+    padding: 10px 20px;
+}
+#registerModal form input[type="submit"] {
+    background-color: #f35a60;
+    font: 18px/18px "Roboto";
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+}
+.chatView {
+    text-align: center;
+    padding-top: 20px;
+}
+.chatView img {
+    width: 118px;
+    height: 118px;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+.chatView .findChatBtn {
+    width: 300px;
+    background: #f3585e;
+    border-radius: 4px;
+    border: 1px solid #ff6f75;
+    margin-bottom: 25px;
+    outline:none;
+}
+.chatView .createChatBtn {
+    width: 300px;
+    background: rgba(157,156,158,0.59);
+    border-radius: 4px;
+    border: 1px solid #fff;
+    outline:none;
+}

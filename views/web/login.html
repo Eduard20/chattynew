@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="chatty" ng-controller="mainCtrl">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <title></title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/files/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/files/css/style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!--<script>const isMobile = ;</script>-->
+    <script type="text/javascript" src="/files/js/lib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/files/js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/files/js/lib/angular.min.js"></script>
+    <script type="text/javascript" src="/files/js/lib/angular-cookies.js"></script>
+    <script type="text/javascript" src="/files/js/lib/angular-route.min.js"></script>
+    <script type="text/javascript" src="/files/js/lib/angular-sanitize.min.js"></script>
+    <!--script(type='text/javascript', src='/files/js/lib/moment.js')-->
+    <script type="text/javascript" src="/files/js/app.js"></script>
+    <script type="text/javascript" src="/files/js/main.js"></script>
+    <script type="text/javascript" src="/files/js/homeCtrl.js"></script>
+</head>
+<body>
+
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="col-xs-4">
+                        <input type="email" >
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function() {
+        Materialize.updateTextFields();
+        $('select').material_select();
+        $('ul.tabs').tabs();
+        $('.modal').modal();
+    });
+</script>

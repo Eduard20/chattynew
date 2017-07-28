@@ -1,0 +1,55 @@
+doctype html
+html(lang="en", ng-app='chatty', ng-controller='mainCtrl')
+    head
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name='viewport', content='user-scalable=no, width=device-width, initial-scale=1')
+        meta(name='format-detection', content='telephone=no')
+        title #{title}
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+        link(rel='stylesheet', href='/files/css/materialize.min.css')
+        link(rel='stylesheet', href='/files/css/style.css')
+        script const isMobile = #{isMobile};
+        script(type='text/javascript', src='/files/js/lib/jquery-3.1.1.min.js')
+        script(type='text/javascript', src='/files/js/lib/materialize.min.js')
+        script(type='text/javascript', src='/files/js/lib/angular.min.js')
+        script(type='text/javascript', src='/files/js/lib/angular-cookies.js')
+        script(type='text/javascript', src='/files/js/lib/angular-route.min.js')
+        script(type='text/javascript', src='/files/js/lib/angular-sanitize.min.js')
+        script(type='text/javascript', src='/files/js/app.js')
+        script(type='text/javascript', src='/files/js/main.js')
+        script(type='text/javascript', src='/files/js/homeCtrl.js')
+body
+nav
+    .nav-wrapper
+        a.brand-logo.right(href='', ng-click='logout()') Logout
+        ul#nav-mobile.left
+            li
+                a(href='/') Home
+            li
+                a(href='/wall') Words
+                    li
+                        a(href='', ng-click='openSearch()') Search
+                #searchField.modal.bottom-sheet
+                    nav
+                        .nav-wrapper
+                            form
+                                .input-field
+                                    input#search1(type='search', required='', placeholder='Search by Email', ng-model='searchUser')
+                                    label.label-icon(for='search1')
+                                        i.material-icons(ng-click='searchUsername(searchUser)') search
+                                    i.material-icons close
+                    div(ng-show='foundUser')
+                        .col.s12
+                            .chip
+                                a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='/#/id{{foundUser.id}}') {{foundUser.email}}
+                    div(ng-show='searchMessage')
+                        .col.s12.center
+                            .red-text {{searchMessage}}
+ng-view
+script.
+    $(document).ready(function () {
+        Materialize.updateTextFields();
+        $('select').material_select();
+        $('ul.tabs').tabs();
+        $('.modal').modal();
+    });

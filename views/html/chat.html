@@ -1,0 +1,201 @@
+<div id="myChats">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="chats">
+                    <h1>My Chats</h1>
+                    <ul class="list-group">
+                        <li ng-repeat="chat in chats" ng-click="openChat(chat)" class="list-group-item">{{chat.name}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <div class="messages">
+                    <div class="view">
+                        <ul>
+                            <li style="width:100%" ng-repeat="chat in chatHistory | orderBy:'date' ">
+                            <div class="pull-left" style="width: 10%">
+                                <div><img class="img-circle" style="width:18px;height:18px" src="/files/img/man.png" /></div>
+                                <p><small>{{chat.date | date:"h:mm a"}}</small></p>
+                            </div>
+
+                            <div class="msj macro pull-left">
+                                <p>{{chat.message}}</p>
+                            </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="send">
+                        <div class="msj-rta macro" style="margin:auto">
+                            <div class="text text-r" style="background:whitesmoke !important">
+                                <input class="mytext" placeholder="Type a message..." ng-model="message">
+                            </div>
+                        </div>
+                        <div class="pull-right sendBtn">
+                            <input type="submit" value="" ng-click="sendMessage(message)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    #myChats {
+        text-align: center;
+        padding-top: 20px;
+    }
+    #myChats .chats {
+        background: #5d6e7a;
+        border-radius: 5px;
+    }
+    #myChats .chats h1 {
+        font-size: 24px;
+        color: #8bc53f;
+        margin-top: 0;
+        padding-top: 8px;
+    }
+    #myChats .chats ul li {
+        cursor: pointer;
+    }
+    #myChats .chats ul li:hover {
+        background: #cccccc;
+    }
+    #myChats .messages .view {
+        background-color: #ebedf2;
+        padding:20px;
+        height: 540px;
+        overflow: scroll;
+    }
+    #myChats .messages .send {
+        padding: 20px;
+        background-color: #ffffff;
+        width: 100%;
+        overflow: hidden;
+    }
+    .mytext{
+        border:0;padding:10px;background:whitesmoke;
+    }
+    .text{
+        width:75%;display:flex;flex-direction:column;
+    }
+    .text > p:first-of-type{
+        width:100%;margin-top:0;margin-bottom:auto;line-height: 13px;font-size: 12px;
+    }
+    .text > p:last-of-type{
+        width:100%;text-align:right;color:silver;margin-bottom:-7px;margin-top:auto;
+    }
+    .text-r{
+        float:right;padding-left:10px;
+    }
+    .macro{
+        margin-top:5px;width:auto;border-radius:5px;padding:5px;display:flex;
+    }
+    .msj.macro p {
+        margin: 0;
+    }
+    .msj-rta{
+        float:left;background:whitesmoke;
+    }
+    .msj{
+        float:left;background:white;
+    }
+    .frame > div:last-of-type{
+        position:absolute;bottom:5px;width:100%;display:flex;
+    }
+    .view ul {
+        list-style-type: none;
+        padding:18px;
+        bottom:32px;
+        display:flex;
+        flex-direction: column;
+
+    }
+    .msj:before{
+        width: 0;
+        height: 0;
+        content:"";
+        top:-5px;
+        left:-14px;
+        position:relative;
+        border-style: solid;
+        border-width: 0 13px 13px 0;
+        border-color: transparent #ffffff transparent transparent;
+    }
+    .msj-rta:after{
+        width: 0;
+        height: 0;
+        content:"";
+        top:-5px;
+        left:14px;
+        position:relative;
+        border-style: solid;
+        border-width: 13px 13px 0 0;
+        border-color: whitesmoke transparent transparent transparent;
+    }
+    input:focus{
+        outline: none;
+    }
+    .msj-rta.macro {
+        width: 80%;
+    }
+    .sendBtn input {
+        background: url("/files/img/send.png") top center no-repeat;
+        width: 38px;
+        height: 38px;
+        border: none;
+        margin: 5px;
+    }
+    /*::-webkit-input-placeholder { !* Chrome/Opera/Safari *!*/
+        /*color: #d4d4d4;*/
+    /*}*/
+    /*::-moz-placeholder { !* Firefox 19+ *!*/
+        /*color: #d4d4d4;*/
+    /*}*/
+    /*:-ms-input-placeholder { !* IE 10+ *!*/
+        /*color: #d4d4d4;*/
+    /*}*/
+    /*:-moz-placeholder { !* Firefox 18- *!*/
+        /*color: #d4d4d4;*/
+    /*}*/
+</style>
+
+<!--<div class="row" id="chat">-->
+    <!--<div class="col s4">-->
+        <!--<div class="collection left col s12">-->
+            <!--<a class="collection-item" ng-repeat="chat in chats" ng-click="openChat(chat)"><span class="new badge">1</span>{{chat.name}}</a>-->
+            <!--&lt;!&ndash;<a href="#!" class="collection-item"><span class="badge">1</span>Alan</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a href="#!" class="collection-item"><span class="new badge">4</span>Alan</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a href="#!" class="collection-item">Alan</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a href="#!" class="collection-item"><span class="badge">14</span>Alan</a>&ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="col 12">-->
+            <!--<a class="waves-effect waves-light btn-large left" ng-click="openChatModal()"><i class="material-icons left">add</i>Create Chat</a>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col s8">-->
+        <!--<div id="messageBox">-->
+            <!--<div class="row">-->
+                <!--<div id="view">-->
+                    <!--<div class="col s12" ng-repeat="chat in chatHistory | orderBy:'date' "><div class="chip">{{chat.message}}</div></div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div id="messageAction">-->
+                <!--<form class="col s12">-->
+                    <!--<div class="row">-->
+                        <!--<div class="input-field col s9">-->
+                            <!--<i class="material-icons prefix">mode_edit</i>-->
+                            <!--<textarea id="icon_prefix2" class="materialize-textarea" ng-model="message"></textarea>-->
+                            <!--<label for="icon_prefix2">Write a message</label>-->
+                        <!--</div>-->
+                        <!--<div class="input-field col s3">-->
+                            <!--<button class="btn waves-effect waves-light" type="submit" name="action" ng-click="sendMessage(message)">Submit-->
+                                <!--<i class="material-icons right">send</i>-->
+                            <!--</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</form>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->

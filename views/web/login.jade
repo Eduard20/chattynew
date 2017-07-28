@@ -1,0 +1,61 @@
+doctype html
+html(lang='en', ng-app='chatty', ng-controller='mainCtrl')
+    head
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='user-scalable=no, width=device-width, initial-scale=1')
+        meta(name='format-detection', content='telephone=no')
+        title #{title}
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+        link(rel='stylesheet', href='/files/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/files/css/style.css')
+        link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
+        script const isMobile = #{isMobile};
+        script(type='text/javascript', src='/files/js/lib/jquery-3.1.1.min.js')
+        script(type='text/javascript', src='/files/js/lib/bootstrap.min.js')
+        script(type='text/javascript', src='/files/js/lib/angular.min.js')
+        script(type='text/javascript', src='/files/js/lib/angular-cookies.js')
+        script(type='text/javascript', src='/files/js/lib/angular-route.min.js')
+        script(type='text/javascript', src='/files/js/lib/angular-sanitize.min.js')
+        // script(type='text/javascript', src='/files/js/lib/moment.js')
+        script(type='text/javascript', src='/files/js/app.js')
+        script(type='text/javascript', src='/files/js/main.js')
+        script(type='text/javascript', src='/files/js/homeCtrl.js')
+    body(ng-cloak)
+        #login
+            .container
+                .row
+                    .col-xs-12
+                        img(src='/files/img/logo.png', alt='' id="logo")
+                        .row
+                            .col-xs-4.col-xs-offset-4
+                                #loginPart
+                                    .header
+                                        p Sign In
+                                    .main
+                                        form(name='loginForm')
+                                            input(type='text', placeholder="Username" ng-model='login_username' required name='username')
+                                            input(type='password', placeholder="Password" ng-model='login_password' required name='password')
+                                            input(type='submit', value="Login into Your Account" ng-click='login(login_username, login_password)', ng-disabled='loginForm.$invalid', disabled='disabled')
+                                            p.text-danger {{message}}
+                                    .footer
+                                        p New Here?&nbsp;
+                                            a(data-toggle='modal', data-target='#registerModal', type='button') Sign Up
+        // Modal
+        #registerModal.modal.fade(role='dialog')
+            .modal-dialog
+                // Modal content
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal') ×
+                        h4.modal-title Sign Up
+                    .modal-body
+                        p.text-danger {{message}}
+                        form(name='registerForm')
+                            input(type='text', placeholder="Name *" ng-model='reg_name' required)
+                            input(type='text', placeholder="Surname *" ng-model='reg_surname' required)
+                            input(type='email', placeholder="Email *" ng-model='reg_email' required)
+                            input(type='text', placeholder="Username *" ng-model='reg_username' required)
+                            input(type='password', placeholder="Password *" ng-model='reg_password' required)
+                            input(type='submit', value="Sign Up", ng-click='register(reg_name, reg_surname, reg_username, reg_email, reg_password)')
+                    .modal-footer
+                        button.btn.btn-default(type='button', data-dismiss='modal') Close
