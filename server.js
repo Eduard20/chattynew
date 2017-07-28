@@ -69,7 +69,7 @@ io.on("connection", socket => {
         const msg = data.message.trim();
         data.date = moment(new Date()).unix();
         mongoRequests.addMessage(data, err => {
-            if (!err) io.sockets.in("room-"+roomId).emit("new message", {msg: msg, date : moment(new Date()).format("LT")});
+            if (!err) io.sockets.in("room-"+roomId).emit("new message", {msg: msg, date : moment(new Date()).format("LT"), nick : data.username});
 
         });
     });

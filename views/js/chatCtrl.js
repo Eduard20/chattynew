@@ -89,7 +89,8 @@ app.controller("chatCtrl", ['$scope', '$rootScope', '$http', '$timeout',
         };
 
         socket.on('new message', function(data){
-            if (data.nick === $rootScope.userInfo.username) {
+            console.log(data);
+            if (data.nick !== $rootScope.userInfo.username) {
                 $chat.append(`<li style="width:100%"><div class="pull-left" style="width: 10%"><div><img class="img-circle" style="width:18px;height:18px" src="/files/img/man.png" /></div><p><small>${data.date}</small></p></div><div class="msj macro pull-left"><p>${data.msg}</p></div></li>`);
             } else {
                 $chat.append(`<li style="width:100%"><div class="pull-right" style="width: 10%"><div><img class="img-circle" style="width:18px;height:18px" src="/files/img/man.png" /></div><p><small>${data.date}</small></p></div><div class="msj macro pull-right"><p>${data.msg}</p></div></li>`);
