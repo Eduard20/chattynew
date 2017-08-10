@@ -1,5 +1,6 @@
 # chatty
 Chatty is a group chat based on your location
+
 username : admin,
 password : admin
 
