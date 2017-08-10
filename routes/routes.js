@@ -4,34 +4,22 @@ const chatFunction = require("../middlewares/chat");
 const express = require("express");
 const router = express.Router();
 
-    // User activities
-
-    router.get('/favicon.ico', (req, res) => {
-        res.sendStatus(200);
-    });
+    router.get('/favicon.ico', (req, res) => res.sendStatus(200));
 
     router.post("/login", (req, res) => {
-        if (undefined != req.body.username) {
-            mongoRequests.login(req, (next) => {
-                res.send(next);
-            })
-        } else {
-            res.send({error : true, message : "Username is not provided"});
+        if (undefined !== req.body.username) {
+            return mongoRequests.login(req, result => res.send(result));
         }
+        res.send({error : true, message : "Username is not provided"});
     });
 
     router.post("/api/userInfo", (req, res) => {
-        mongoRequests.getUserInfo(req, (next) => {
-            res.send(next);
-        });
+        mongoRequests.getUserInfo(req, result => res.send(result));
     });
 
     router.post("/api/addChat", (req, res) => {
         if (req.body) {
-            chatFunction.addChat(req.body, result => {
-                res.send(result);
-            });
-            return
+            return chatFunction.addChat(req.body, result => res.send(result));
         }
         res.send({error : true, message : "Data is not provided"});
     });
@@ -42,12 +30,9 @@ const router = express.Router();
 
     router.post("/register", (req, res) => {
         if (undefined != req.body.username && undefined != req.body.password) {
-            mongoRequests.register(req, (next) => {
-                res.send(next);
-            })
-        } else {
-            res.send({error : true, message : "Username is not provided"});
+            return mongoRequests.register(req, result => res.send(result))
         }
+        res.send({error : true, message : "Username is not provided"});
     });
 
     router.post("/api/getHistory", (req, res) => {
@@ -69,9 +54,7 @@ const router = express.Router();
 
     router.post("/api/addChatUser", (req, res) => {
         if (req.body) {
-            chatFunction.addChatUser(req.body, result => {
-                res.send(result);
-            })
+            chatFunction.addChatUser(req.body, result => res.send(result))
         }
     });
 
@@ -84,15 +67,11 @@ const router = express.Router();
         res.sendFile(req.params[0], {root: __dirname + "/../views/"});
     });
 
-    router.get("/", (req, res) => {
-        exports.renderIndex(req, res);
-    });
+    router.get("/", (req, res) => exports.renderIndex(req, res));
 
-    router.get("*", (req, res) => {
-        exports.renderIndex(req, res);
-    });
+    router.get("*", (req, res) => exports.renderIndex(req, res));
 
-    exports.renderIndex = function(req, res) {
+    exports.renderIndex = (req, res) => {
         let isMobile = isCallerMobile(req);
         if (req.headers.cookie && req.headers.cookie.indexOf('token') > -1) {
             let token = decodeURIComponent(req.headers.cookie.split("token=")[1].split(" ")[0]);

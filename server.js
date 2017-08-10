@@ -8,9 +8,9 @@ const platformConfigs = require('./config/config');
 const mongoRequests = require("./dbRequests/mongoRequests");
 const port = platformConfigs.port;
 const moment = require("moment");
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 const routes = require("./routes/routes");
 const auth = require("./middlewares/auth");
 const jade = require("jade");
@@ -24,15 +24,12 @@ app.set('view engine', 'jade');
 app.use("/api", auth.isAuth);
 app.use("/", routes);
 
-// app.get('/', function(req, res){
-//     res.sendfile('index.html');
-// });
-
 app.use(function (req, res, next) {
     let err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
+
 // error handlers
 
 // development error handler
@@ -58,27 +55,24 @@ app.use(function (err, req, res, next) {
 });
 
 io.on("connection", socket => {
-    var users = {};
+    let users = {};
     let roomId;
-    // console.log(roomId);
     socket.on("joinChat", data => {
         if (roomId) socket.leave("room-" + roomId);
         roomId = data._id;
         socket.join("room-"+roomId)});
-    socket.on('send message', function(data, callback) {
+    socket.on('send message', data => {
         const msg = data.message.trim();
         data.date = moment(new Date()).unix();
         mongoRequests.addMessage(data, err => {
-            if (!err) io.sockets.in("room-"+roomId).emit("new message", {msg: msg, date : moment(new Date()).format("LT"), nick : data.username});
-
+            if (!err) io.sockets.in("room-"+roomId).emit("new message",
+                {msg: msg, date : moment(new Date()).format("LT"), nick : data.username});
         });
     });
-    socket.on('disconnect', function(data){
+    socket.on('disconnect', () => {
         if(!socket.nickname) return;
         delete users[socket.nickname];
     });
 });
 
-http.listen(port, () => {
-    console.log(`listening on port ${port} in ${process.env.NODE_ENV} mode with process id ${process.pid}`);
-});
+http.listen(port, console.log(`listening on port ${port} in ${process.env.NODE_ENV} mode with process id ${process.pid}`));

@@ -12,10 +12,6 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider',
                     templateUrl: '../html/chat.html',
                     controller: 'chatCtrl'
                 })
-                // .when("/find", {
-                //     templateUrl: '../html/find.html',
-                //     controller: 'findCtrl'
-                // })
                 .otherwise({
                     redirectTo: '/'
                 });

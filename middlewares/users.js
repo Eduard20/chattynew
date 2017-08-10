@@ -10,9 +10,8 @@ const users = {
         }, platformConfigs.jwtSecret);
     },
 
-    decodeToken : data => {
-        return jwt.verify(data, platformConfigs.jwtSecret);
-    }
+    decodeToken : data => jwt.verify(data, platformConfigs.jwtSecret)
+
 };
 
 module.exports = users;

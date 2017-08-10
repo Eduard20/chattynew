@@ -23,7 +23,7 @@ app.controller("mainCtrl", ['$scope', '$rootScope', '$http', '$timeout', '$cooki
          };
         let token = $cookies.get('token');
         getUserInfo(token);
-         function getLocation() {
+        function getLocation() {
              if (navigator.geolocation) {
                  navigator.geolocation.getCurrentPosition(showPosition);
              } else {

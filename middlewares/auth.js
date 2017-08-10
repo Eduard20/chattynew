@@ -16,9 +16,9 @@ const auth = {
                 if (result.error) {
                     res.status(404);
                     res.json(result);
-                } else {
-                    next();
+                    return;
                 }
+                next();
             })
 
         }
